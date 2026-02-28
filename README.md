@@ -1,6 +1,7 @@
 ## D1: Kickoff
 
-## Nome do Projeto: Classic Cars - Anúncios de Carros Antigos
+## Nome do Projeto
+- Classic Cars - Anúncios de Carros Antigos
 
 ## Alunos
 - Gabriel Santos Palermo
