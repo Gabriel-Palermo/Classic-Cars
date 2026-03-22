@@ -52,8 +52,9 @@ A aplicação possui diferentes níveis de acesso, conforme o tipo de usuário:
   - Gerenciamento dos próprios anúncios  
   - Acesso a insights relacionados às suas publicações  
 
-- **Administrador:**  
-  Possui credenciais previamente definidas e acesso a funcionalidades avançadas de gestão, como:  
+- **Administrador:**
+  Possui credenciais previamente definidas e acesso a funcionalidades avançadas de gestão, como:
+  Usuário: admin | Senha: 1234
   - Aprovação ou rejeição de anúncios pendentes  
   - Monitoramento dos anúncios publicados  
   - Controle geral da plataforma  
