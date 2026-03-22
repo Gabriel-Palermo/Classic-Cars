@@ -14,9 +14,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #cfcfcf;
     --foreground: #ededed;
   }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop {
+  animation: pop 0.3s ease;
+}
+
+.input {
+  @apply w-full h-[32px] px-3 border border-gray-400 rounded-md text-sm outline-none;
 }
 
 body {
