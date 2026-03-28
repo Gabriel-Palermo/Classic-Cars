@@ -2,31 +2,57 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Props = {
-  carro: any; // depois a gente tipa melhor
+  carro: any;
+  index: number; // 🔥 necessário para salvar o like
 };
 
-export const CarCard = ({ carro }: Props) => {
+export const CarCard = ({ carro, index }: Props) => {
 
   const [likes, setLikes] = useState(0);
   const [curtido, setCurtido] = useState(false);
 
-  const handleLike = () => {
-    if (curtido) {
-      setLikes(likes - 1);
-    } else {
-      setLikes(likes + 1);
+  // 🔥 carregar likes salvos
+  useEffect(() => {
+    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
+
+    if (anuncios[index]?.likes) {
+      setLikes(anuncios[index].likes);
     }
-    setCurtido(!curtido);
+
+    // 🔥 NOVO - recuperar curtida
+    if (anuncios[index]?.curtido) {
+      setCurtido(true);
+    }
+  }, [index]);
+
+  const handleVerAnuncio = () => {
+    localStorage.setItem("anuncioSelecionado", JSON.stringify(carro));
+  };
+
+  const handleLike = () => {
+    const novosLikes = curtido ? likes - 1 : likes + 1;
+    const novoCurtido = !curtido;
+
+    setLikes(novosLikes);
+    setCurtido(novoCurtido);
+
+    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
+
+    if (anuncios[index]) {
+      anuncios[index].likes = novosLikes;
+      anuncios[index].curtido = novoCurtido; // 🔥 NOVO
+      localStorage.setItem("anuncios", JSON.stringify(anuncios));
+    }
   };
 
   return (
     <div className="bg-white rounded-xl shadow-md p-3 w-64">
       
       <Image
-        src={carro.imagem}
+        src={carro.imagem || "/images/default.jpg"} // 🔥 evita erro
         alt={carro.nome}
         width={300}
         height={200}
@@ -51,7 +77,10 @@ export const CarCard = ({ carro }: Props) => {
         </button>
 
         <Link href="/anuncio">
-          <button className="bg-[#00C2CB] px-4 py-1 rounded hover:bg-[#00B0B5] transition text-lg text-[#1A1A1A]">
+          <button
+            onClick={handleVerAnuncio}
+            className="bg-[#00C2CB] px-4 py-1 rounded hover:bg-[#00B0B5] transition text-lg text-[#1A1A1A]"
+          >
             Ver anúncio
           </button>
         </Link>

@@ -10,38 +10,9 @@ export default function AdminAnuncios() {
   const [anuncios, setAnuncios] = useState<any[]>([]);
   const router = useRouter();
 
-  const anunciosFixos= [
-    {
-      nome: "VW Gol 1000",
-      ano: "1995",
-      km: "134.215",
-      preco: "25.000",
-      imagem: "/images/gol-quadrado.jpg",
-      usuario: "Carlos",
-      status: "pendente"
-    },
-    {
-      nome: "Opala Diplomata 4.1",
-      ano: "1990",
-      km: "72.189",
-      preco: "80.000",
-      imagem: "/images/opala-diplomata.jpeg",
-      usuario: "Marcos",
-      status: "aprovado"
-    },
-    {
-      nome: "Omega CD 4.1",
-      ano: "1996",
-      km: "88.456",
-      preco: "45.000",
-      imagem: "/images/omega.jpg",
-      usuario: "João",
-      status: "recusado"
-    }
-  ];
-
   useEffect(() => {
-    setAnuncios(anunciosFixos);
+    const anunciosStorage = JSON.parse(localStorage.getItem("anuncios") || "[]");
+    setAnuncios(anunciosStorage);
   }, []);
 
   const atualizarStatus = (index: number, status: string) => {
@@ -73,13 +44,13 @@ export default function AdminAnuncios() {
         <div className="max-h-[400px] overflow-y-auto pr-3 space-y-2">
 
           {anuncios.map((a, i) => (
-            <div key={i} className="grid grid-cols-[430px_220px_150px] items-center border-b py-4">
+            <div key={i} className="grid grid-cols-[430px_220px_150px] items-center gap-4 border-b py-4">
 
               {/* ESQUERDA */}
               <div className="flex gap-4 items-center">
 
                 <img
-                  src={a.imagem}
+                  src={a.imagens?.[0] || "/images/sem-imagem.png"}
                   className="w-32 h-24 object-cover rounded"
                 />
 
@@ -92,7 +63,7 @@ export default function AdminAnuncios() {
 
               {/* CENTRO */}
               <div className="text-sm">
-                <p><b>Valor:</b> R$ {a.preco}</p>
+                <p><b>Valor:</b> R$ {a.avista}</p>
                 <p><b>Vendedor:</b> {a.usuario}</p>
 
                 <div className="flex gap-2 mt-2">

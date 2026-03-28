@@ -2,15 +2,41 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Insights() {
 
-    const dados = [
-        { titulo: "Total de anúncios feitos", valor: 2397, cor: "bg-cyan-400" },
-        { titulo: "Pedidos de anúncios pendentes", valor: 308, cor: "bg-yellow-400" },
-        { titulo: "Pedidos rejeitados", valor: 37, cor: "bg-orange-500" },
-        { titulo: "Registro de contas", valor: 103, cor: "bg-purple-500" }
-    ];
+  const [dados, setDados] = useState({
+    total: 0,
+    pendentes: 0,
+    recusados: 0,
+    aprovados: 0,
+    totalLikes: 0,
+    usuarios: 0
+  });
+
+  useEffect(() => {
+    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
+    const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+
+    const total = anuncios.length;
+    const pendentes = anuncios.filter((a: any) => a.status === "pendente").length;
+    const recusados = anuncios.filter((a: any) => a.status === "recusado").length;
+    const aprovados = anuncios.filter((a: any) => a.status === "aprovado").length;
+
+    const totalLikes = anuncios.reduce((acc: number, a: any) => {
+      return acc + (a.likes || 0);
+    }, 0);
+
+    setDados({
+      total,
+      pendentes,
+      recusados,
+      aprovados,
+      totalLikes,
+      usuarios: usuarios.length
+    });
+  }, []);
 
   return (
     <div className="flex flex-col items-center py-10 min-h-screen text-[#1A1A1A]">
@@ -30,22 +56,22 @@ export default function Insights() {
 
             <div className="flex justify-between items-center bg-blue-500 px-4 py-3 rounded-lg shadow hover:bg-cyan-500 transition">
               <span className="font-semibold">Total de anúncios feitos</span>
-              <span className="font-bold text-xl">2397</span>
+              <span className="font-bold text-xl">{dados.total}</span>
             </div>
 
             <div className="flex justify-between items-center bg-yellow-400 px-4 py-3 rounded-lg shadow hover:bg-yellow-500 transition">
               <span className="font-semibold">Pedidos de anúncios pendentes</span>
-              <span className="font-bold text-xl">308</span>
+              <span className="font-bold text-xl">{dados.pendentes}</span>
             </div>
 
             <div className="flex justify-between items-center bg-orange-500 px-4 py-3 rounded-lg shadow hover:bg-orange-600 transition">
               <span className="font-semibold">Pedidos rejeitados</span>
-              <span className="font-bold text-xl">37</span>
+              <span className="font-bold text-xl">{dados.recusados}</span>
             </div>
 
             <div className="flex justify-between items-center bg-purple-500 px-4 py-3 rounded-lg shadow text-[#1A1A1A] hover:bg-purple-600 transition">
               <span className="font-semibold">Registro de contas</span>
-              <span className="font-bold text-xl">103</span>
+              <span className="font-bold text-xl">{dados.usuarios}</span>
             </div>
 
           </div>
@@ -55,22 +81,22 @@ export default function Insights() {
 
             <div className="flex justify-between items-center bg-green-500 px-4 py-3 rounded-lg shadow text-[#1A1A1A] hover:bg-green-600 transition">
               <span className="font-semibold">Anúncios Positivos</span>
-              <span className="font-bold text-xl">2397</span>
+              <span className="font-bold text-xl">{dados.aprovados}</span>
             </div>
 
             <div className="flex justify-between items-center bg-yellow-700 px-4 py-3 rounded-lg shadow hover:bg-yellow-600 transition">
               <span className="font-semibold">Anúncios Medianos</span>
-              <span className="font-bold text-xl">308</span>
+              <span className="font-bold text-xl">{dados.totalLikes}</span>
             </div>
 
             <div className="flex justify-between items-center bg-red-500 px-4 py-3 rounded-lg shadow text-[#1A1A1A] hover:bg-red-600 transition">
               <span className="font-semibold">Anúncios Negativos</span>
-              <span className="font-bold text-xl">37</span>
+              <span className="font-bold text-xl">{dados.recusados}</span>
             </div>
 
             <div className="flex justify-between items-center bg-cyan-300 px-4 py-3 rounded-lg shadow hover:bg-cyan-400 transition">
               <span className="font-semibold">Busca por pesquisa</span>
-              <span className="font-bold text-xl">103</span>
+              <span className="font-bold text-xl">{dados.total}</span>
             </div>
 
           </div>

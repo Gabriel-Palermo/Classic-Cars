@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
 
-  const [usuario, setUsuario] = useState<string | null>(null);
+  const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
@@ -20,16 +20,22 @@ export default function Login() {
       return;
     }
 
-    // 👑 ADMIN
+    // 👑 ADMIN (PRIORIDADE TOTAL)
     if (usuario === "admin" && senha === "1234") {
       localStorage.setItem("tipo", "admin");
       localStorage.setItem("usuario", "Administrador");
+
       router.push("/admin");
-      window.location.reload();
+
+      // 🔥 mantém reload
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+
       return;
     }
 
-    // 🔥 BUSCA USUÁRIOS CADASTRADOS
+    // 🔥 USUÁRIOS
     const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
 
     const userEncontrado = usuarios.find(
@@ -46,7 +52,10 @@ export default function Login() {
     localStorage.setItem("usuario", userEncontrado.nome);
 
     router.push("/");
-    window.location.reload();
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
   return (

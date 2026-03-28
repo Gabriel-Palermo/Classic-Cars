@@ -24,11 +24,16 @@ export const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const userTipo = localStorage.getItem("tipo");
-    const userNome = localStorage.getItem("usuario");
+    const atualizar = () => {
+      setTipo(localStorage.getItem("tipo"));
+      setUsuario(localStorage.getItem("usuario"));
+    };
 
-    setTipo(userTipo);
-    setUsuario(userNome);
+    atualizar();
+
+    window.addEventListener("storage", atualizar);
+
+    return () => window.removeEventListener("storage", atualizar);
   }, []);
 
   const handleLogout = () => {
@@ -37,14 +42,16 @@ export const Navbar = () => {
     setTipo(null);
     setUsuario(null);
     router.push("/");
-    window.location.reload();
+    router.refresh();
   };
 
   return (
-    <header className="bg-white shadow-md px-8 py-4 flex items-center justify-between">
+    <header className="bg-white shadow-md px-8 py-4 flex items-center justify-between gap-6">
 
       {/* LOGO */}
-      <Image src="/images/logo.png" alt="Logo" width={140} height={70} />
+      <Link href="/">
+        <Image src="/images/logo.png" alt="Logo" width={140} height={70} />
+      </Link>
 
       {/* BUSCA */}
       <div className="relative w-80">

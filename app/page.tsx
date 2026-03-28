@@ -2,20 +2,34 @@
 
 import { CarCard } from "./components/features/CarCard";
 import { useBusca } from "@/app/context/BuscaContext";
-
-const carros = [
-  { nome: "VW Gol 1000", ano: 1995, km: "134.215", imagem: "/images/gol-quadrado.jpg" },
-  { nome: "Opala Diplomata 4.1", ano: 1990, km: "72.189", imagem: "/images/opala-diplomata.jpeg" },
-  { nome: "Omega CD 4.1", ano: 1996, km: "88.456", imagem: "/images/omega.jpg" },
-  { nome: "D-20 Custom 4x4", ano: 1989, km: "44.130", imagem: "/images/d20.jpg" },
-];
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
   const { busca } = useBusca();
+  const [carros, setCarros] = useState<any[]>([]);
+
+  useEffect(() => {
+    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
+
+    // 🔥 FILTRAR APENAS APROVADOS
+    const aprovados = anuncios.filter((a: any) => a.status === "aprovado");
+
+    // 🔥 formata os dados
+    const formatados = aprovados.map((a: any) => ({
+      ...a, // 🔥 mantém TODOS os dados
+      nome: a.modelo || "Sem nome",
+      imagem: a.imagens?.[0] || "/images/sem-imagem.png",
+      likes: a.likes || 0
+    }));
+
+    setCarros(formatados);
+  }, []);
 
   const carrosFiltrados = carros.filter((carro) =>
-    carro.nome.toLowerCase().includes(busca.toLowerCase())
+    (carro.nome || "")
+      .toLowerCase()
+      .includes((busca || "").toLowerCase())
   );
 
   return (
@@ -23,7 +37,11 @@ export default function Home() {
 
       <div className="grid grid-cols-4 gap-6 mt-6">
         {carrosFiltrados.map((carro, i) => (
-          <CarCard key={i} carro={carro} />
+          <CarCard
+            key={carro.id || i}
+            index={i}
+            carro={carro}
+          />
         ))}
       </div>
 
@@ -31,9 +49,12 @@ export default function Home() {
         <p className="text-gray-500 mt-4">Nenhum carro encontrado</p>
       )}
 
-        {/* PAGINAÇÃO */}
+      {/* PAGINAÇÃO */}
       <div className="flex gap-4 mt-10 items-center">
-        <button className="bg-[#FF6A00] text-black px-4 py-2 rounded hover:bg-[#FF6A00]/80" onClick={() => alert("Não possui mais páginas")}>
+        <button
+          className="bg-[#FF6A00] text-black px-4 py-2 rounded hover:bg-[#FF6A00]/80"
+          onClick={() => alert("Não possui mais páginas")}
+        >
           Próximo
         </button>
 
@@ -46,6 +67,6 @@ export default function Home() {
         </button>
       </div>
 
-    </div>  
+    </div>
   );
 }

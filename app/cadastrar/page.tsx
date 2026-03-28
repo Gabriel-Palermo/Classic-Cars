@@ -18,33 +18,50 @@ export default function Cadastro() {
 
   const handleCadastro = () => {
 
-    if (!nome || !email || !usuario || !senha || !confirmar) {
+    const nomeTrim = nome.trim();
+    const emailTrim = email.trim();
+    const userTrim = usuario.trim();
+    const senhaTrim = senha.trim();
+
+    if (!nomeTrim || !emailTrim || !userTrim || !senhaTrim || !confirmar) {
       setErro("Preencha todos os campos");
       return;
     }
 
-    if (senha !== confirmar) {
+    if (!emailTrim.includes("@") || !emailTrim.includes(".")) {
+      setErro("Email inválido");
+      return;
+    }
+
+    if (senhaTrim !== confirmar) {
       setErro("As senhas não coincidem");
       return;
     }
 
-    // 🔥 salva no localStorage
+    if (senhaTrim.length < 6) {
+      setErro("Senha deve ter no mínimo 6 caracteres");
+      return;
+    }
+
     const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
 
-    const existe = usuarios.find((u: any) => u.usuario === usuario);
+    const existe = usuarios.find((u: any) => u.usuario === userTrim);
 
     if (existe) {
       setErro("Usuário já existe");
       return;
     }
 
-    usuarios.push({ nome, email, usuario, senha });
+    usuarios.push({
+      nome: nomeTrim,
+      email: emailTrim,
+      usuario: userTrim,
+      senha: senhaTrim
+    });
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    alert("Cadastro realizado com sucesso!");
-
-    router.push("/login");
+    router.push("/login?sucesso=1");
   };
 
   return (
@@ -61,13 +78,17 @@ export default function Cadastro() {
           <h1 className="text-2xl font-bold text-[#1A1A1A]">Cadastrar-se</h1>
         </div>
 
-        <input onChange={(e) => setNome(e.target.value)} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Nome completo" />
-        <input onChange={(e) => setEmail(e.target.value)} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Email" />
-        <input onChange={(e) => setUsuario(e.target.value)} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Usuário" />
-        <input type="password" onChange={(e) => setSenha(e.target.value)} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Senha" />
-        <input type="password" onChange={(e) => setConfirmar(e.target.value)} className="w-full mb-4 p-2 border rounded text-[#1A1A1A]" placeholder="Confirmar senha" />
+        <input onChange={(e) => setNome(e.target.value)} onInput={() => setErro("")} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Nome completo" />
+        <input onChange={(e) => setEmail(e.target.value)} onInput={() => setErro("")} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Email" />
+        <input onChange={(e) => setUsuario(e.target.value)} onInput={() => setErro("")} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Usuário" />
+        <input type="password" onChange={(e) => setSenha(e.target.value)} onInput={() => setErro("")} className="w-full mb-2 p-2 border rounded text-[#1A1A1A]" placeholder="Senha" />
+        <input type="password" onChange={(e) => setConfirmar(e.target.value)} onInput={() => setErro("")} className="w-full mb-4 p-2 border rounded text-[#1A1A1A]" placeholder="Confirmar senha" />
 
-        {erro && <p className="text-red-500 text-sm mb-2">{erro}</p>}
+        {erro && (
+          <div className="bg-red-100 text-red-600 px-3 py-2 rounded mb-3 text-sm">
+            {erro}
+          </div>
+        )}
 
         <button
           onClick={handleCadastro}
