@@ -58,3 +58,14 @@ A aplicação possui diferentes níveis de acesso, conforme o tipo de usuário:
   - Aprovação ou rejeição de anúncios pendentes  
   - Monitoramento dos anúncios publicados  
   - Controle geral da plataforma  
+
+---
+
+### 🔵 D3: UI Milestone
+- Desenvolvimento da interface completa conforme protótipo de alta fidelidade (Figma)  
+- Implementação de formulários com validação utilizando Zod  
+- Gerenciamento de estados complexos com React Hooks  
+- Consumo de APIs (Mock ou públicas) para integração de dados  
+- Refinamento de UI/UX com foco em usabilidade e responsividade  
+
+---
