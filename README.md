@@ -107,3 +107,33 @@ Nesta fase, o foco foi a implementação completa da interface e integração co
 - Padronização visual e consistência entre componentes
 
 ---
+
+### D4 - Data Core (Implementação do Back-end inicial)
+
+Nesta etapa foi implementada toda a estrutura inicial do Back-end da aplicação:
+
+- 🗄️ Modelagem de Banco de Dados
+- Criação do DER (Diagrama Entidade Relacionamento)
+- Definição das entidades do sistema
+- Relacionamentos entre tabelas
+
+- ⚙️ Back-end com NestJS
+- 🧩 Prisma ORM
+- 📦 Entidades implementadas
+- 🔗 Endpoints REST
+
+Foram implementados endpoints para:
+
+Usuários
+Criar usuário
+Listar usuários
+Anúncios
+Criar anúncio
+Buscar anúncios
+Buscar anúncio por ID
+Excluir anúncio
+Mensagens
+Criar mensagens
+Listar mensagens
+
+---
