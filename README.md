@@ -1,12 +1,13 @@
-## 🚗 Classic Cars — Plataforma de Anúncios de Veículos Clássicos
+## 🚗 Classic Cars — Plataforma Fullstack de Anúncios de Veículos Clássicos
 
-O Classic Cars é uma aplicação web desenvolvida com o objetivo de conectar entusiastas de carros antigos, permitindo a publicação, visualização e gerenciamento de anúncios de veículos clássicos.
+O Classic Cars é uma aplicação web fullstack desenvolvida com o objetivo de conectar entusiastas de carros antigos, permitindo a publicação, visualização, aprovação e gerenciamento de anúncios de veículos clássicos.
 
-A plataforma foi projetada com foco em experiência do usuário (UX), interface moderna (UI) e responsividade, garantindo uma navegação intuitiva tanto em dispositivos desktop quanto mobile.
+A plataforma foi projetada com foco em experiência do usuário (UX), interface moderna (UI), segurança e responsividade, garantindo uma navegação intuitiva tanto em dispositivos desktop quanto mobile.
 
 ---
 
 ## 👨‍🎓 Equipe de Desenvolvimento
+
 - Gabriel Santos Palermo  
 - Alisson Klem  
 
@@ -17,123 +18,204 @@ A plataforma foi projetada com foco em experiência do usuário (UX), interface 
 O design da aplicação foi previamente estruturado por meio de um protótipo de alta fidelidade no Figma, garantindo consistência visual e melhor planejamento da experiência do usuário.
 
 Acesse o protótipo:
+
 https://www.figma.com/design/vsJXjxCLbSegDUO5xikCH8/Projeto-D.-Full-Stack?node-id=0-1&t=IEGOBK5DmvrIGoR8-1
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+# 🚀 Tecnologias Utilizadas
 
-O projeto foi desenvolvido utilizando tecnologias modernas do ecossistema front-end:
+## Front-end
+- Next.js  
+- React.js  
+- TypeScript  
+- Tailwind CSS  
 
-- Next.js — Framework React para renderização híbrida (SSR/SSG) e roteamento otimizado  
-- TypeScript — Tipagem estática para maior segurança e escalabilidade do código  
-- Tailwind CSS — Framework utilitário para estilização rápida e responsiva  
+## Back-end
+- NestJS  
+- Prisma ORM  
+- SQLite  
 
----
-
-## 📌 Etapas do Projeto
-
-O desenvolvimento da aplicação foi organizado em etapas evolutivas, permitindo uma construção incremental e estruturada do sistema:
-
----
-
-### 🟢 D1 — Kickoff (Planejamento e Estrutura Inicial)
-
-Nesta fase inicial, foram definidos os principais direcionamentos do projeto:
-
-- Definição do tema e escopo da aplicação  
-- Criação do protótipo de alta fidelidade no Figma  
-- Configuração do ambiente de desenvolvimento  
-- Inicialização do projeto com Next.js, TypeScript e Tailwind CSS  
-- Estruturação inicial de pastas e organização do código  
+## Segurança
+- JWT Authentication  
+- Bcrypt (criptografia de senhas)  
+- Guards e rotas protegidas  
 
 ---
 
-### 🟡 D2 — The Shell (Estrutura da Aplicação)
+# 📌 Funcionalidades da Plataforma
 
-Nesta etapa, foi construída a base estrutural da aplicação:
-
-- Implementação do sistema de rotas utilizando o App Router do Next.js  
-- Criação de layouts persistentes (Header, Footer, Sidebar)  
-- Aplicação do padrão de componentização baseado em Atomic Design  
-- Estruturação da navegação entre páginas  
-- Preparação da base para integração de funcionalidades futuras  
+## 👤 Usuários
+- Cadastro de usuários  
+- Login autenticado com JWT  
+- Persistência de sessão  
+- Controle de permissões  
 
 ---
 
-## 🔐 Autenticação e Controle de Acesso
-
-A aplicação implementa um sistema de autenticação com diferentes níveis de permissão, garantindo segurança e organização das funcionalidades:
-
-### 👤 Visitantes (não autenticados)
-- Visualização dos anúncios disponíveis  
-- Acesso às informações básicas dos veículos  
-- Consulta de dados de contato dos anunciantes  
-
----
-
-### 🔑 Usuários Autenticados
-Após realizar cadastro ou login, o usuário passa a ter acesso completo às funcionalidades da plataforma:
-
-- Publicação de novos anúncios  
+## 🚘 Anúncios
+- Criação de anúncios  
+- Upload e persistência de imagens  
 - Visualização detalhada dos veículos  
-- Edição e gerenciamento dos próprios anúncios  
-- Acompanhamento de desempenho e insights das publicações  
+- Aprovação de anúncios pelo administrador  
+- Exclusão de anúncios  
+- Sistema de status:
+  - Pendente
+  - Aprovado
+  - Rejeitado
 
 ---
 
-### 🛠️ Administrador
-O administrador possui privilégios elevados para gerenciamento da plataforma:
-
-- Credenciais de acesso:
-  Usuário: admin  
-  Senha: 1234  
-
-- Aprovação ou rejeição de anúncios pendentes  
-- Monitoramento geral dos anúncios publicados  
-- Controle administrativo do sistema  
+## 🛠️ Administração
+- Painel administrativo  
+- Aprovação/Rejeição de anúncios  
+- Gerenciamento completo das publicações  
+- Controle de anúncios pendentes  
+- Exclusão de anúncios publicados  
 
 ---
 
-### 🔵 D3 — UI Milestone (Interface e Integração)
-
-Nesta fase, o foco foi a implementação completa da interface e integração com dados:
-
-- Desenvolvimento da interface conforme o protótipo do Figma  
-- Implementação de formulários com validação utilizando Zod  
-- Gerenciamento de estados com React Hooks  
-- Integração com APIs (mockadas ou reais) para consumo de dados  
-- Ajustes finos de UI/UX, priorizando usabilidade e responsividade 
-- Padronização visual e consistência entre componentes
+## 💬 Interações
+- Sistema de mensagens para contato  
+- Sistema de curtidas  
+- Insights de anúncios  
 
 ---
 
-### D4 - Data Core (Implementação do Back-end inicial)
+# 🔐 Autenticação e Controle de Acesso
 
-Nesta etapa foi implementada toda a estrutura inicial do Back-end da aplicação:
+A aplicação implementa autenticação baseada em JWT, garantindo segurança nas rotas protegidas e controle de acesso entre usuários comuns e administradores.
 
-- 🗄️ Modelagem de Banco de Dados
-- Criação do DER (Diagrama Entidade Relacionamento)
-- Definição das entidades do sistema
-- Relacionamentos entre tabelas
+---
 
-- ⚙️ Back-end com NestJS
-- 🧩 Prisma ORM
-- 📦 Entidades implementadas
-- 🔗 Endpoints REST
+## 👤 Visitantes
+Usuários não autenticados podem:
 
-Foram implementados endpoints para:
+- Visualizar anúncios disponíveis  
+- Navegar pela plataforma  
+- Consultar informações básicas dos veículos  
 
-Usuários
-Criar usuário
-Listar usuários
-Anúncios
-Criar anúncio
-Buscar anúncios
-Buscar anúncio por ID
-Excluir anúncio
-Mensagens
-Criar mensagens
-Listar mensagens
+---
+
+## 🔑 Usuários Autenticados
+Após realizar login, o usuário possui acesso às funcionalidades completas:
+
+- Criar anúncios  
+- Visualizar anúncios detalhados  
+- Interagir com veículos  
+- Gerenciar anúncios próprios  
+
+---
+
+## 🛠️ Administrador
+
+O administrador possui permissões elevadas para gerenciamento da plataforma.
+
+### Credenciais de acesso:
+- Usuário: `admin`
+- Senha: `1234`
+
+### Funcionalidades administrativas:
+- Aprovação de anúncios  
+- Rejeição de anúncios  
+- Exclusão de publicações  
+- Controle de anúncios pendentes  
+- Monitoramento geral da plataforma  
+
+---
+
+# 🧩 Estrutura do Projeto
+
+O desenvolvimento foi organizado em entregas evolutivas:
+
+---
+
+## 🟢 D1 — Kickoff
+
+- Definição do tema e escopo  
+- Criação do protótipo no Figma  
+- Configuração inicial do ambiente  
+- Inicialização do projeto com Next.js + TypeScript + Tailwind  
+
+---
+
+## 🟡 D2 — The Shell
+
+- Estruturação de rotas  
+- Layouts persistentes  
+- Componentização da aplicação  
+- Organização inicial da arquitetura  
+
+---
+
+## 🔵 D3 — UI Milestone
+
+- Desenvolvimento completo da interface  
+- Responsividade  
+- Integração entre páginas  
+- Validação de formulários  
+- Melhorias de UX/UI  
+
+---
+
+## 🟣 D4 — Data Core
+
+### Banco de Dados
+- Modelagem DER  
+- Relacionamentos entre entidades  
+- Estruturação do banco SQLite  
+
+### Back-end
+- Implementação do NestJS  
+- Integração Prisma ORM  
+- Criação das entidades  
+- Endpoints REST  
+
+### Endpoints implementados
+#### Usuários
+- Criar usuário  
+- Login autenticado  
+- Listar usuários  
+
+#### Anúncios
+- Criar anúncio  
+- Buscar anúncios  
+- Buscar anúncio por ID  
+- Atualizar status  
+- Excluir anúncio  
+
+#### Mensagens
+- Criar mensagens  
+- Listar mensagens  
+
+---
+
+## 🔴 D5 — Security & Fullstack Integration
+
+Nesta etapa foi realizada a integração completa entre Front-end e Back-end.
+
+### 🔐 Segurança
+- Implementação de JWT Authentication  
+- Proteção de rotas com Guards  
+- Criptografia de senhas com bcrypt  
+- Controle de permissões  
+
+### 🌐 Integração Fullstack
+- Integração real entre Next.js e NestJS  
+- Consumo de APIs REST  
+- Persistência de dados no banco  
+- Sistema completo de autenticação  
+
+### 🚘 Sistema de anúncios
+- Criação real de anúncios  
+- Aprovação administrativa  
+- Persistência de imagens  
+- Integração completa entre Home, Admin e Detalhes do anúncio  
+
+### 🛠️ Painel Administrativo
+- Aprovação/Rejeição de anúncios  
+- Exclusão de anúncios  
+- Controle de status das publicações  
+- Gerenciamento completo da plataforma
 
 ---
