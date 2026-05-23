@@ -64,6 +64,7 @@ export default function Anunciar() {
     setImagens((prev) => prev.filter((_, i) => i !== index));
 };
 
+<<<<<<< HEAD
     const handleSalvar = async () => {
     if (!nome || !modelo || !avista) {
         alert("Preencha os campos obrigatórios");
@@ -124,6 +125,46 @@ export default function Anunciar() {
     }
     };
 
+=======
+  const handleSalvar = () => {
+    if (!nome || !modelo || !avista) {
+      alert("Preencha os campos obrigatórios");
+      return;
+    }
+
+    const calcularDias = (data: string) => {
+        const hoje = new Date();
+        const criado = new Date(data);
+
+        const diff = hoje.getTime() - criado.getTime();
+
+        return Math.floor(diff / (1000 * 60 * 60 * 24));
+    };
+
+    const usuario = localStorage.getItem("usuario");
+
+    const novo = {
+      id: Date.now(),
+      nome, cpf, telefone, cidade, uf, endereco, numero, email, info,
+      modelo, marca, ano, placa, renavam, km, cambio, combustivel,
+      carroceria, cor, blindado, licenciado, chassi, ipva, imagens,
+      avista, aprazo, parcelas, outros,
+      usuario,
+      
+      dataCriacao: new Date().toISOString(),
+      status: "pendente",
+      like: 0
+    };
+
+    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
+    anuncios.push(novo);
+    localStorage.setItem("anuncios", JSON.stringify(anuncios));
+
+    alert("Anúncio enviado para aprovação!");
+    router.push("/meus-anuncios");
+  };
+
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   return (
     <div className="min-h-screen py-10 flex flex-col items-center">
 

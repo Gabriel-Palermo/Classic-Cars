@@ -4,7 +4,11 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+<<<<<<< HEAD
   url      = "file:./dev.db"
+=======
+  url      = env("DATABASE_URL")
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
 }
 
 model Usuario {
@@ -19,6 +23,7 @@ model Usuario {
 }
 
 model Anuncio {
+<<<<<<< HEAD
   id             Int      @id @default(autoincrement())
   modelo         String
   ano            String
@@ -39,6 +44,27 @@ model Anuncio {
   mensagens      Int      @default(0)
 
   dataCriacao    DateTime @default(now())
+=======
+  id          Int     @id @default(autoincrement())
+  modelo      String
+  ano         String
+  km          String
+  cor         String
+  cidade      String
+  combustivel String
+  motor       String
+  precoAvista      String
+  precoAprazo      String?
+  parcelas    String?
+
+  status String @default("pendente")
+
+  likes     Int @default(0)
+  views     Int @default(0)
+  mensagens Int @default(0)
+
+  dataCriacao DateTime @default(now())
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
 
   usuarioId Int
   usuario   Usuario @relation(fields: [usuarioId], references: [id])
@@ -67,4 +93,8 @@ model Mensagem {
 
   anuncioId Int
   anuncio   Anuncio @relation(fields: [anuncioId], references: [id])
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3

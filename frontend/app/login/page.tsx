@@ -6,19 +6,32 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
   const router = useRouter();
 
+<<<<<<< HEAD
   const handleLogin = async () => {
+=======
+  const handleLogin = () => {
+
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
     if (!usuario || !senha) {
       setErro("Preencha os campos");
       return;
     }
 
+<<<<<<< HEAD
     // ADMIN LOCAL
+=======
+    // ADMIN
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
     if (usuario === "admin" && senha === "1234") {
       localStorage.setItem("tipo", "admin");
       localStorage.setItem("usuario", "Administrador");
@@ -32,6 +45,7 @@ export default function Login() {
       return;
     }
 
+<<<<<<< HEAD
     try {
       const response = await fetch(
         "http://localhost:3001/auth/login",
@@ -90,6 +104,27 @@ export default function Login() {
 
       setErro("Erro ao conectar com o servidor");
     }
+=======
+    const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+
+    const userEncontrado = usuarios.find(
+      (u: any) => u.usuario === usuario && u.senha === senha
+    );
+
+    if (!userEncontrado) {
+      setErro("Usuário não possui cadastro");
+      return;
+    }
+
+    localStorage.setItem("tipo", "user");
+    localStorage.setItem("usuario", userEncontrado.nome);
+
+    router.push("/");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   };
 
   return (
@@ -98,15 +133,20 @@ export default function Login() {
       <div className="bg-white p-8 rounded-2xl shadow-lg w-96 relative">
 
         {/* BOTÃO VOLTAR */}
+<<<<<<< HEAD
         <Link
           href="/"
           className="absolute top-4 left-4 text-gray-600 hover:text-black"
         >
+=======
+        <Link href="/" className="absolute top-4 left-4 text-gray-600 hover:text-black">
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
           <ArrowLeft size={22} />
         </Link>
 
         {/* TÍTULO */}
         <div className="flex flex-col items-center mb-6">
+<<<<<<< HEAD
           <User
             size={32}
             className="text-[#00C2CB] mb-2"
@@ -125,24 +165,45 @@ export default function Login() {
           }
           className="w-full mb-3 px-3 py-2 border rounded-lg text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#00C2CB]"
           placeholder="Email"
+=======
+          <User size={32} className="text-[#00C2CB] mb-2" />
+          <h1 className="text-2xl font-bold text-[#1A1A1A]">LOGIN</h1>
+        </div>
+
+        {/* INPUT USUÁRIO */}
+        <input
+          value={usuario || ""}
+          onChange={(e) => setUsuario(e.target.value)}
+          className="w-full mb-3 px-3 py-2 border rounded-lg text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#00C2CB]"
+          placeholder="Usuário"
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
         />
 
         {/* INPUT SENHA */}
         <input
           type="password"
+<<<<<<< HEAD
           value={senha}
           onChange={(e) =>
             setSenha(e.target.value)
           }
+=======
+          value={senha || ""}
+          onChange={(e) => setSenha(e.target.value)}
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
           className="w-full mb-2 px-3 py-2 border rounded-lg text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#00C2CB]"
           placeholder="Senha"
         />
 
         {/* ERRO */}
         {erro && (
+<<<<<<< HEAD
           <p className="text-red-500 text-sm mb-3">
             {erro}
           </p>
+=======
+          <p className="text-red-500 text-sm mb-3">{erro}</p>
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
         )}
 
         {/* ESQUECI SENHA */}
@@ -152,14 +213,21 @@ export default function Login() {
 
         {/* BOTÕES */}
         <div className="flex justify-between gap-3">
+<<<<<<< HEAD
 
           <button
             onClick={handleLogin}
             className="bg-[#00C2CB] hover:bg-[#00aab3] text-white px-4 py-2 rounded-lg w-full transition"
+=======
+          <button
+            onClick={handleLogin}
+            className="bg-[#00C2CB] hover:bg-[#00aab3] text-white px-4 py-2 rounded-lg w-full transition text-[#1A1A1A]"
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
           >
             Entrar
           </button>
 
+<<<<<<< HEAD
           <Link
             href="/cadastrar"
             className="w-full"
@@ -169,9 +237,20 @@ export default function Login() {
             </button>
           </Link>
 
+=======
+          <Link href="/cadastrar" className="w-full">
+            <button className="bg-[#FF6A00] hover:bg-[#e65c00] text-white px-4 py-2 rounded-lg w-full transition text-[#1A1A1A] ">
+              Cadastrar
+            </button>
+          </Link>
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
         </div>
 
       </div>
     </div>
   );
+<<<<<<< HEAD
 } 
+=======
+}
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3

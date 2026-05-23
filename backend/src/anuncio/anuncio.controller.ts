@@ -4,7 +4,10 @@ import {
   Delete,
   Get,
   Param,
+<<<<<<< HEAD
   Patch,
+=======
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   Post,
 } from '@nestjs/common';
 
@@ -12,6 +15,10 @@ import { AnuncioService } from './anuncio.service';
 
 @Controller('anuncio')
 export class AnuncioController {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   constructor(private readonly anuncioService: AnuncioService) {}
 
   @Post()
@@ -29,6 +36,7 @@ export class AnuncioController {
     return this.anuncioService.buscar(Number(id));
   }
 
+<<<<<<< HEAD
   @Patch(':id/status')
   atualizarStatus(
     @Param('id') id: string,
@@ -40,6 +48,8 @@ export class AnuncioController {
     );
   }
 
+=======
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   @Delete(':id')
   deletar(@Param('id') id: string) {
     return this.anuncioService.deletar(Number(id));

@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 imagens String?
 
+=======
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
 generator client {
   provider = "prisma-client-js"
 }

@@ -10,6 +10,7 @@ export default function Home() {
   const [carros, setCarros] = useState<any[]>([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     const carregarAnuncios = async () => {
       try {
         const response = await fetch("http://localhost:3001/anuncio");
@@ -50,6 +51,20 @@ export default function Home() {
     };
 
     carregarAnuncios();
+=======
+    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
+
+    const aprovados = anuncios.filter((a: any) => a.status === "aprovado");
+
+    const formatados = aprovados.map((a: any) => ({
+      ...a, // Mantém TODOS os dados
+      nome: a.modelo || "Sem nome",
+      imagem: a.imagens?.[0] || "/images/sem-imagem.png",
+      likes: a.likes || 0
+    }));
+
+    setCarros(formatados);
+>>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   }, []);
 
   const carrosFiltrados = carros.filter((carro) =>
