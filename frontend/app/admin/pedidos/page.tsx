@@ -39,9 +39,9 @@ export default function Pedidos() {
   const pegarImagem = (imagens?: string) => {
     try {
       const lista = imagens ? JSON.parse(imagens) : [];
-      return lista[0] || "/images/sem-foto-carro.png";
+      return lista[0] || "/images/default-car.jpg";
     } catch {
-      return "/images/sem-foto-carro.png";
+      return "/images/default-car.jpg";
     }
   };
 

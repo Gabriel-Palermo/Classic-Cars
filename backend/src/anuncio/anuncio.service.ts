@@ -1,59 +1,40 @@
-import { Injectable } from '@nestjs/common';
-<<<<<<< HEAD
+import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AnuncioService {
-=======
-import { PrismaService } from 'src/prisma/prisma.service';
-
-@Injectable()
-export class AnuncioService {
-
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   constructor(private prisma: PrismaService) {}
 
   async criar(data: any) {
     return this.prisma.anuncio.create({
-<<<<<<< HEAD
-      data,
-=======
       data: {
-        modelo: "Gol GTI",
-        ano: "1994",
-        km: "124000",
-        combustivel: "Gasolina",
-        cidade: "Curitiba",
-        motor: "AP 2.0",
-        cor: "Azul",
-
-        precoAvista: "124900",
-        precoAprazo: "149900",
-
-        parcelas: "36x",
-        status: "pendente",
-
-        usuarioId: 1
-      }
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
+        modelo: data.modelo,
+        ano: data.ano,
+        km: data.km,
+        combustivel: data.combustivel,
+        cidade: data.cidade,
+        motor: data.motor,
+        cor: data.cor,
+        precoAvista: data.precoAvista,
+        precoAprazo: data.precoAprazo,
+        parcelas: data.parcelas,
+        imagens: data.imagens,
+        status: 'pendente',
+        usuarioId: data.usuarioId,
+      },
     });
   }
 
   async listar() {
-<<<<<<< HEAD
     return this.prisma.anuncio.findMany({
       include: {
         usuario: true,
       },
     });
-=======
-    return this.prisma.anuncio.findMany();
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   }
 
   async buscar(id: number) {
     return this.prisma.anuncio.findUnique({
-<<<<<<< HEAD
       where: { id },
       include: {
         usuario: true,
@@ -62,25 +43,27 @@ export class AnuncioService {
   }
 
   async atualizarStatus(id: number, status: string) {
+    const anuncio = await this.prisma.anuncio.findUnique({
+      where: { id },
+    });
+
+    if (!anuncio) {
+      throw new NotFoundException('Anúncio não encontrado');
+    }
+
+    if (anuncio.status !== 'pendente') {
+      throw new BadRequestException('Este anúncio já foi processado');
+    }
+
     return this.prisma.anuncio.update({
       where: { id },
       data: { status },
-=======
-      where: { id }
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
     });
   }
 
   async deletar(id: number) {
     return this.prisma.anuncio.delete({
-<<<<<<< HEAD
       where: { id },
     });
   }
-=======
-      where: { id }
-    });
-  }
-
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
 }

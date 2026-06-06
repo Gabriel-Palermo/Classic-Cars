@@ -4,97 +4,66 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-<<<<<<< HEAD
   url      = "file:./dev.db"
-=======
-  url      = env("DATABASE_URL")
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
 }
 
 model Usuario {
-  id    Int    @id @default(autoincrement())
-  nome  String
-  email String @unique
-  senha String
-  tipo  String
+  id       Int       @id @default(autoincrement())
+  nome     String
+  email    String    @unique
+  senha    String
+  tipo     String    @default("cliente")
 
   anuncios Anuncio[]
-  curtidas Curtida[]
+  mensagens Mensagem[]
+  curtidas  Curtida[]
 }
 
 model Anuncio {
-<<<<<<< HEAD
-  id             Int      @id @default(autoincrement())
-  modelo         String
-  ano            String
-  km             String
-  cor            String
-  cidade         String
-  combustivel    String
-  motor          String
-  precoAvista    String
-  precoAprazo    String?
-  parcelas       String?
-  imagens        String?
+  id           Int      @id @default(autoincrement())
+  modelo       String
+  ano          String
+  km           String
+  combustivel  String
+  cidade       String
+  motor        String?
+  cor          String?
+  precoAvista  String
+  precoAprazo  String?
+  parcelas     String?
+  imagens      String?
+  status       String   @default("pendente")
+  dataCriacao  DateTime @default(now())
 
-  status         String   @default("pendente")
+  usuarioId    Int
+  usuario      Usuario  @relation(fields: [usuarioId], references: [id])
 
-  likes          Int      @default(0)
-  views          Int      @default(0)
-  mensagens      Int      @default(0)
+  mensagens    Mensagem[]
+  curtidas     Curtida[]
+}
 
-  dataCriacao    DateTime @default(now())
-=======
-  id          Int     @id @default(autoincrement())
-  modelo      String
-  ano         String
-  km          String
-  cor         String
-  cidade      String
-  combustivel String
-  motor       String
-  precoAvista      String
-  precoAprazo      String?
-  parcelas    String?
+model Mensagem {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String
+  telefone  String?
+  texto     String
+  dataEnvio DateTime @default(now())
 
-  status String @default("pendente")
+  usuarioId Int?
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
 
-  likes     Int @default(0)
-  views     Int @default(0)
-  mensagens Int @default(0)
+  anuncioId Int?
+  anuncio   Anuncio? @relation(fields: [anuncioId], references: [id])
+}
 
-  dataCriacao DateTime @default(now())
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
+model Curtida {
+  id        Int      @id @default(autoincrement())
+  data      DateTime @default(now())
 
   usuarioId Int
   usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
-  curtidas     Curtida[]
-  mensagensRel Mensagem[]
-}
-
-model Curtida {
-  id Int @id @default(autoincrement())
-
-  usuarioId Int
-  anuncioId Int
-
-  usuario Usuario @relation(fields: [usuarioId], references: [id])
-  anuncio Anuncio @relation(fields: [anuncioId], references: [id])
-}
-
-model Mensagem {
-  id Int @id @default(autoincrement())
-
-  nome     String
-  email    String
-  telefone String
-  mensagem String
-
   anuncioId Int
   anuncio   Anuncio @relation(fields: [anuncioId], references: [id])
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3

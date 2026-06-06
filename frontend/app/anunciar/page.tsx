@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 export default function Anunciar() {
   const router = useRouter();
 
-  // Pessoais
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -18,7 +17,6 @@ export default function Anunciar() {
   const [info, setInfo] = useState("");
   const [complemento, setComplemento] = useState("");
 
-  // Veículo
   const [modelo, setModelo] = useState("");
   const [marca, setMarca] = useState("");
   const [ano, setAno] = useState("");
@@ -35,7 +33,6 @@ export default function Anunciar() {
   const [ipva, setIpva] = useState("");
   const [imagens, setImagens] = useState<string[]>([]);
 
-  // Valores
   const [avista, setAvista] = useState("");
   const [aprazo, setAprazo] = useState("");
   const [outros, setOutros] = useState("");
@@ -45,92 +42,76 @@ export default function Anunciar() {
     const files = Array.from(e.target.files);
 
     files.forEach((file: any) => {
-        if (file.size > 2 * 1024 * 1024) {
+      if (file.size > 2 * 1024 * 1024) {
         alert("Imagem muito grande (máx 2MB)");
         return;
-        }
+      }
 
-        const reader = new FileReader();
+      const reader = new FileReader();
 
-        reader.onloadend = () => {
+      reader.onloadend = () => {
         setImagens((prev) => [...prev, reader.result as string]);
-        };
+      };
 
-        reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
     });
   };
 
-  const removerImagem = (index: number) => {
-    setImagens((prev) => prev.filter((_, i) => i !== index));
-};
+    const removerImagem = (index: number) => {
+        setImagens((prev) => prev.filter((_, i) => i !== index));
+    };
 
-<<<<<<< HEAD
     const handleSalvar = async () => {
-    if (!nome || !modelo || !avista) {
+        if (!nome || !modelo || !avista) {
         alert("Preencha os campos obrigatórios");
         return;
-    }
+        }
 
-    try {
+        try {
         const token = localStorage.getItem("token");
 
         if (!token) {
-        alert("Usuário não autenticado");
-        router.push("/login");
-        return;
+            alert("Usuário não autenticado");
+            router.push("/login");
+            return;
         }
 
         const usuarioId = localStorage.getItem("usuarioId");
 
-        const response = await fetch(
-        "http://localhost:3001/anuncio",
-        {
+        const response = await fetch("http://localhost:3001/anuncio", {
             method: "POST",
-
             headers: {
             "Content-Type": "application/json",
-
             Authorization: `Bearer ${token}`,
             },
-
             body: JSON.stringify({
-                modelo,
-                ano,
-                km,
-                combustivel,
-                cidade,
-                motor: cambio,
-                cor,
-                precoAvista: avista,
-                precoAprazo: aprazo,
-                parcelas,
-                imagens: JSON.stringify(imagens),
-                usuarioId: Number(usuarioId),
+            modelo,
+            ano,
+            km,
+            combustivel,
+            cidade,
+            motor: cambio,
+            cor,
+            precoAvista: avista,
+            precoAprazo: aprazo,
+            parcelas,
+            imagens: JSON.stringify(imagens),
+            usuarioId: Number(usuarioId),
             }),
-        }
-        );
+        });
 
         if (!response.ok) {
-        alert("Erro ao criar anúncio");
-        return;
+            alert("Erro ao criar anúncio");
+            return;
         }
 
         alert("Anúncio enviado com sucesso!");
-
         router.push("/meus-anuncios");
-    } catch (error) {
+        } catch (error) {
         console.error(error);
-
         alert("Erro ao conectar com servidor");
-    }
-    };
-
-=======
-  const handleSalvar = () => {
-    if (!nome || !modelo || !avista) {
-      alert("Preencha os campos obrigatórios");
-      return;
-    }
+        }
+  };
 
     const calcularDias = (data: string) => {
         const hoje = new Date();
@@ -141,31 +122,8 @@ export default function Anunciar() {
         return Math.floor(diff / (1000 * 60 * 60 * 24));
     };
 
-    const usuario = localStorage.getItem("usuario");
-
-    const novo = {
-      id: Date.now(),
-      nome, cpf, telefone, cidade, uf, endereco, numero, email, info,
-      modelo, marca, ano, placa, renavam, km, cambio, combustivel,
-      carroceria, cor, blindado, licenciado, chassi, ipva, imagens,
-      avista, aprazo, parcelas, outros,
-      usuario,
-      
-      dataCriacao: new Date().toISOString(),
-      status: "pendente",
-      like: 0
-    };
-
-    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
-    anuncios.push(novo);
-    localStorage.setItem("anuncios", JSON.stringify(anuncios));
-
-    alert("Anúncio enviado para aprovação!");
-    router.push("/meus-anuncios");
-  };
-
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   return (
+
     <div className="min-h-screen py-10 flex flex-col items-center">
 
     {/* CARD */}

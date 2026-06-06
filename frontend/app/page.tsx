@@ -5,12 +5,10 @@ import { useBusca } from "@/app/context/BuscaContext";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
   const { busca } = useBusca();
   const [carros, setCarros] = useState<any[]>([]);
 
   useEffect(() => {
-<<<<<<< HEAD
     const carregarAnuncios = async () => {
       try {
         const response = await fetch("http://localhost:3001/anuncio");
@@ -39,7 +37,7 @@ export default function Home() {
             ...a,
             id: a.id,
             nome: a.modelo || "Sem nome",
-            imagem: imagens[0] || "/images/default.jpg",
+            imagem: imagens[0] || "/images/sem-foto-carro.png",
             likes: a.likes || 0,
           };
         });
@@ -51,20 +49,6 @@ export default function Home() {
     };
 
     carregarAnuncios();
-=======
-    const anuncios = JSON.parse(localStorage.getItem("anuncios") || "[]");
-
-    const aprovados = anuncios.filter((a: any) => a.status === "aprovado");
-
-    const formatados = aprovados.map((a: any) => ({
-      ...a, // Mantém TODOS os dados
-      nome: a.modelo || "Sem nome",
-      imagem: a.imagens?.[0] || "/images/sem-imagem.png",
-      likes: a.likes || 0
-    }));
-
-    setCarros(formatados);
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   }, []);
 
   const carrosFiltrados = carros.filter((carro) =>
@@ -75,7 +59,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center">
-
       <div className="grid grid-cols-4 gap-6 mt-6">
         {carrosFiltrados.map((carro, i) => (
           <CarCard
@@ -87,10 +70,11 @@ export default function Home() {
       </div>
 
       {carrosFiltrados.length === 0 && (
-        <p className="text-gray-500 mt-4">Nenhum carro encontrado</p>
+        <p className="text-gray-500 mt-4">
+          Nenhum carro encontrado
+        </p>
       )}
 
-      {/* PAGINAÇÃO */}
       <div className="flex gap-4 mt-10 items-center">
         <button
           className="bg-[#FF6A00] text-black px-4 py-2 rounded hover:bg-[#FF6A00]/80"
@@ -99,15 +83,20 @@ export default function Home() {
           Próximo
         </button>
 
-        <span className="text-[#1A1A1A] hover:text-[#00C2CB]">1</span>
-        <span className="text-[#1A1A1A] hover:text-[#00C2CB]">2</span>
-        <span className="text-[#1A1A1A] hover:text-[#00C2CB]">3</span>
+        <span className="text-[#1A1A1A] hover:text-[#00C2CB]">
+          1
+        </span>
+        <span className="text-[#1A1A1A] hover:text-[#00C2CB]">
+          2
+        </span>
+        <span className="text-[#1A1A1A] hover:text-[#00C2CB]">
+          3
+        </span>
 
         <button className="bg-orange-500 text-[#1A1A1A] px-3 py-2 rounded hover:bg-orange-400">
           &gt;
         </button>
       </div>
-
     </div>
   );
 }
