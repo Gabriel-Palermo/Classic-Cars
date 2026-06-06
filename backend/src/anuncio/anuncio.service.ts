@@ -62,6 +62,18 @@ export class AnuncioService {
   }
 
   async deletar(id: number) {
+    await this.prisma.curtida.deleteMany({
+      where: {
+        anuncioId: id,
+      },
+    });
+
+    await this.prisma.mensagem.deleteMany({
+      where: {
+        anuncioId: id,
+      },
+    });
+
     return this.prisma.anuncio.delete({
       where: { id },
     });

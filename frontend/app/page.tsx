@@ -37,7 +37,7 @@ export default function Home() {
             ...a,
             id: a.id,
             nome: a.modelo || "Sem nome",
-            imagem: imagens[0] || "/images/sem-foto-carro.png",
+            imagem: imagens[0] || "/images/default-car.jpg",
             likes: a.likes || 0,
           };
         });
