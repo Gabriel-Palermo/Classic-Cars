@@ -9,7 +9,7 @@ A plataforma foi projetada com foco em experiência do usuário (UX), interface 
 ## 👨‍🎓 Equipe de Desenvolvimento
 
 - Gabriel Santos Palermo  
-- Alisson Klem  
+- 
 
 ---
 
@@ -220,7 +220,7 @@ Nesta etapa foi realizada a integração completa entre Front-end e Back-end.
 
 ---
 
-## 🔶 D6 — Advanced Features & Platform Management
+## 🔶 D6 — Final SaaS
 
 Nesta etapa foi realizada a consolidação da plataforma, implementando funcionalidades avançadas de gerenciamento, monitoramento e experiência do usuário.
 
