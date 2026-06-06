@@ -26,11 +26,17 @@ export class AnuncioService {
   }
 
   async listar() {
-    return this.prisma.anuncio.findMany({
+    const anuncios = await this.prisma.anuncio.findMany({
       include: {
         usuario: true,
+        curtidas: true,
       },
     });
+
+    return anuncios.map((anuncio) => ({
+      ...anuncio,
+      likes: anuncio.curtidas.length,
+    }));
   }
 
   async buscar(id: number) {
@@ -59,6 +65,18 @@ export class AnuncioService {
       where: { id },
       data: { status },
     });
+  }
+
+  async curtir(id: number) {
+    const anuncio = await this.prisma.anuncio.findUnique({
+      where: { id },
+    });
+
+    if (!anuncio) {
+      throw new NotFoundException('Anúncio não encontrado');
+    }
+
+    return anuncio;
   }
 
   async deletar(id: number) {

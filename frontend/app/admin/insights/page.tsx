@@ -42,9 +42,14 @@ export default function Insights() {
         (a: any) => a.status === "rejeitado"
       ).length;
 
-      const totalLikes = anuncios.reduce((acc: number, a: any) => {
-        return acc + (a.likes || 0);
-      }, 0);
+      const likesSalvos = JSON.parse(
+        localStorage.getItem("likesAnuncios") || "{}"
+      );
+
+      const totalLikes = Object.values(likesSalvos).reduce(
+        (acc: number, valor: any) => acc + Number(valor),
+        0
+      );
 
       setDados({
         total,

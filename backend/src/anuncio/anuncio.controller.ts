@@ -40,6 +40,11 @@ export class AnuncioController {
     );
   }
 
+  @Patch(':id/curtir')
+  curtir(@Param('id') id: string) {
+    return this.anuncioService.curtir(Number(id));
+  }
+
   @Delete(':id')
   deletar(@Param('id') id: string) {
     return this.anuncioService.deletar(Number(id));

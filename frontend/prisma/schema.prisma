@@ -35,7 +35,8 @@ model Anuncio {
   parcelas      String?
 
   status        String
-  dataCriacao   DateTime @default(now())
+  likes         Int       @default(0)
+  dataCriacao   DateTime  @default(now())
 
   usuarioId     Int
   usuario       Usuario @relation(fields: [usuarioId], references: [id])
@@ -45,13 +46,13 @@ model Anuncio {
 }
 
 model Curtida {
-  id          Int      @id @default(autoincrement())
+  id        Int @id @default(autoincrement())
 
-  usuarioId   Int
-  anuncioId   Int
+  usuarioId Int
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
-  usuario     Usuario @relation(fields: [usuarioId], references: [id])
-  anuncio     Anuncio @relation(fields: [anuncioId], references: [id])
+  anuncioId Int
+  anuncio   Anuncio @relation(fields: [anuncioId], references: [id])
 }
 
 model Mensagem {

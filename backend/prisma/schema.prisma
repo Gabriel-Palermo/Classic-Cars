@@ -33,6 +33,7 @@ model Anuncio {
   parcelas     String?
   imagens      String?
   status       String   @default("pendente")
+  likes        Int      @default(0)
   dataCriacao  DateTime @default(now())
 
   usuarioId    Int
@@ -58,8 +59,7 @@ model Mensagem {
 }
 
 model Curtida {
-  id        Int      @id @default(autoincrement())
-  data      DateTime @default(now())
+  id        Int @id @default(autoincrement())
 
   usuarioId Int
   usuario   Usuario @relation(fields: [usuarioId], references: [id])
