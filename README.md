@@ -219,3 +219,65 @@ Nesta etapa foi realizada a integração completa entre Front-end e Back-end.
 - Gerenciamento completo da plataforma
 
 ---
+
+## 🔶 D6 — Advanced Features & Platform Management
+
+Nesta etapa foi realizada a consolidação da plataforma, implementando funcionalidades avançadas de gerenciamento, monitoramento e experiência do usuário.
+
+### 🚘 Gerenciamento de Anúncios
+- Página "Meus Anúncios" integrada ao banco de dados
+- Visualização dos anúncios criados pelo usuário autenticado
+- Exclusão de anúncios pelo proprietário
+- Exibição de informações completas dos veículos
+- Controle de status dos anúncios (Pendente, Aprovado e Rejeitado)
+- Cálculo automático do tempo de publicação
+
+### 👍 Sistema de Curtidas
+- Implementação de curtidas em anúncios
+- Persistência das curtidas durante a navegação
+- Atualização dinâmica da interface
+- Integração com os relatórios de Insights
+
+### 📊 Dashboard e Insights
+- Insights do Usuário
+- Total de anúncios publicados
+- Total de curtidas recebidas
+- Média de curtidas por anúncio
+- Indicadores de desempenho dos anúncios
+- Classificação de anúncios positivos e negativos
+- Dashboard Administrativo
+- Total de anúncios cadastrados
+- Quantidade de anúncios aprovados
+- Quantidade de anúncios pendentes
+- Quantidade de anúncios rejeitados
+- Total de usuários cadastrados
+- Taxa de aprovação da plataforma
+- Monitoramento geral da aplicação
+
+### 🛠️ Melhorias Administrativas
+- Aprovação de anúncios em tempo real
+- Rejeição de anúncios
+- Exclusão de anúncios com tratamento de relacionamentos no banco de dados
+- Gerenciamento centralizado das publicações
+- Controle completo do ciclo de vida dos anúncios
+
+### 🔗 Integração Completa Fullstack
+- Comunicação entre Front-end e Back-end via API REST
+- Persistência de dados utilizando Prisma ORM e SQLite
+- Integração entre autenticação, anúncios, mensagens e painel administrativo
+- Atualização automática das informações entre usuários e administradores
+
+### ✅ Resultado Final
+
+Ao final do D6, a plataforma passou a operar como uma aplicação Fullstack completa, permitindo:
+
+- Cadastro e autenticação de usuários
+- Criação e gerenciamento de anúncios
+- Aprovação administrativa
+- Sistema de curtidas
+- Dashboard de Insights
+- Persistência de dados em banco de dados
+- Controle de acesso por perfis de usuário
+- Integração completa entre Front-end e Back-end
+
+---
