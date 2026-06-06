@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Check, X, ArrowLeft } from "lucide-react";
 
 type Pedido = {
-<<<<<<< HEAD
   id: number;
   modelo: string;
   ano: string;
@@ -16,15 +15,6 @@ type Pedido = {
   };
   placa?: string;
   imagens?: string;
-=======
-  modelo: string;
-  ano: number;
-  km: string;
-  avista: string;
-  usuario: string;
-  placa: string;
-  imagens: string[];
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   status: string;
 };
 
@@ -32,7 +22,6 @@ export default function Pedidos() {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
 
   useEffect(() => {
-<<<<<<< HEAD
     carregarPedidos();
   }, []);
 
@@ -50,9 +39,9 @@ export default function Pedidos() {
   const pegarImagem = (imagens?: string) => {
     try {
       const lista = imagens ? JSON.parse(imagens) : [];
-      return lista[0] || "/images/default.jpg";
+      return lista[0] || "/images/sem-foto-carro.png";
     } catch {
-      return "/images/default.jpg";
+      return "/images/sem-foto-carro.png";
     }
   };
 
@@ -77,51 +66,15 @@ export default function Pedidos() {
     }
 
     setPedidos((prev) => prev.filter((p) => p.id !== id));
-=======
-    const anuncios: Pedido[] = JSON.parse(
-      localStorage.getItem("anuncios") || "[]"
-    );
-
-    const pendentes = anuncios.filter((a) => a.status === "pendente");
-
-    setPedidos(pendentes);
-  }, []);
-
-  const atualizarStatus = (index: number, status: string) => {
-    const anuncios: Pedido[] = JSON.parse(
-      localStorage.getItem("anuncios") || "[]"
-    );
-
-    const pedido = pedidos[index];
-
-    const iReal = anuncios.findIndex(
-      (a) =>
-        a.modelo === pedido.modelo &&
-        a.usuario === pedido.usuario &&
-        a.placa === pedido.placa
-    );
-
-    if (iReal !== -1) {
-      anuncios[iReal].status = status;
-      localStorage.setItem("anuncios", JSON.stringify(anuncios));
-    }
-
-    setPedidos((prev) => prev.filter((_, i) => i !== index));
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
   };
 
   return (
     <div className="flex flex-col items-center py-10 min-h-screen text-[#1A1A1A]">
-<<<<<<< HEAD
-=======
-      {/* CARD PRINCIPAL */}
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
       <div className="bg-white w-full max-w-[900px] rounded-2xl shadow-lg p-6">
         <h1 className="text-3xl font-bold text-center mb-8">
           Conferir pedidos de anúncios
         </h1>
 
-<<<<<<< HEAD
         <div className="max-h-[400px] overflow-y-auto space-y-4 pr-2 text-xl">
           {pedidos.map((p) => (
             <div
@@ -131,19 +84,6 @@ export default function Pedidos() {
               <div className="flex items-center gap-5">
                 <img
                   src={pegarImagem(p.imagens)}
-=======
-        {/* LISTA */}
-        <div className="max-h-[400px] overflow-y-auto space-y-4 pr-2 text-xl">
-          {pedidos.map((p, i) => (
-            <div
-              key={i}
-              className="grid grid-cols-[300px_300px_1fr] items-center border-b pb-4"
-            >
-              {/* ESQUERDA */}
-              <div className="flex items-center gap-5">
-                <img
-                  src={p.imagens?.[0] || "/images/default.jpg"}
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
                   className="w-32 h-24 object-cover rounded"
                   alt={p.modelo}
                 />
@@ -155,45 +95,26 @@ export default function Pedidos() {
                 </div>
               </div>
 
-<<<<<<< HEAD
               <div className="flex items-center gap-3 justify-center">
                 <button
                   onClick={() => atualizarStatus(p.id, "aprovado")}
-=======
-              {/* AÇÕES */}
-              <div className="flex items-center gap-3 justify-center">
-                <button
-                  onClick={() => atualizarStatus(i, "aprovado")}
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
                   className="bg-green-500 hover:bg-green-600 p-2 rounded text-white"
                 >
                   <Check size={18} />
                 </button>
 
                 <button
-<<<<<<< HEAD
                   onClick={() => atualizarStatus(p.id, "rejeitado")}
-=======
-                  onClick={() => atualizarStatus(i, "rejeitado")}
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
                   className="bg-red-500 hover:bg-red-600 p-2 rounded text-white"
                 >
                   <X size={18} />
                 </button>
               </div>
 
-<<<<<<< HEAD
               <div className="text-sm">
                 <p><b>Valor:</b> R$ {p.precoAvista}</p>
                 <p><b>Vendedor:</b> {p.usuario?.nome || "-"}</p>
                 <p><b>Status:</b> {p.status}</p>
-=======
-              {/* DIREITA */}
-              <div className="text-sm">
-                <p><b>Valor:</b> R$ {p.avista}</p>
-                <p><b>Vendedor:</b> {p.usuario}</p>
-                <p><b>Placa:</b> {p.placa}</p>
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
               </div>
             </div>
           ))}
@@ -206,10 +127,6 @@ export default function Pedidos() {
         </div>
       </div>
 
-<<<<<<< HEAD
-=======
-      {/* CARD DE RESUMO */}
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
       <div className="bg-white w-full max-w-[900px] mt-6 rounded-xl shadow-md p-4 flex justify-between items-center">
         <div className="bg-[#00C2CB] px-6 py-2 rounded-lg font-semibold hover:bg-[#00B0B5] transition text-xl">
           Total solicitações de anúncios
@@ -221,10 +138,6 @@ export default function Pedidos() {
         </span>
       </div>
 
-<<<<<<< HEAD
-=======
-      {/* BOTÃO VOLTAR */}
->>>>>>> 450ea8fa76eeb537302f8dff0ae5f98a014d4cf3
       <Link href="/" className="mt-8">
         <button className="bg-[#FF6A00] hover:bg-[#e65c00] px-6 py-2 rounded-lg flex items-center gap-2 text-white">
           <ArrowLeft size={18} />
