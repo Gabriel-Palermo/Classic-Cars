@@ -9,7 +9,7 @@ A plataforma foi projetada com foco em experiência do usuário (UX), interface 
 ## 👨‍🎓 Equipe de Desenvolvimento
 
 - Gabriel Santos Palermo  
-- 
+- Arthur Nantes Trento
 
 ---
 
