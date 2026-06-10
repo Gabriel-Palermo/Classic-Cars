@@ -10,6 +10,7 @@ A plataforma foi projetada com foco em experiência do usuário (UX), interface 
 
 - Gabriel Santos Palermo  
 - Arthur Nantes Trento
+- André Martins Marques
 
 ---
 
