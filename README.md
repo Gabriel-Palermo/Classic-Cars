@@ -10,7 +10,7 @@ A plataforma foi projetada com foco em experiência do usuário (UX), interface 
 
 - Gabriel Santos Palermo  
 - Arthur Nantes Trento
-- André Martins Marques
+- Luiz Otávio da Rosa
 
 ---
 
@@ -280,5 +280,64 @@ Ao final do D6, a plataforma passou a operar como uma aplicação Fullstack comp
 - Persistência de dados em banco de dados
 - Controle de acesso por perfis de usuário
 - Integração completa entre Front-end e Back-end
+
+---
+
+# 🧪 Qualidade de Software e Testes
+
+Durante o desenvolvimento do Classic Cars, foram implementados testes automatizados para verificar o funcionamento da aplicação e garantir maior confiabilidade ao sistema.
+
+### 🔹 Testes Unitários — Jest
+
+Foram desenvolvidos testes unitários para validar o comportamento individual dos serviços do back-end, utilizando mocks para simular as dependências.
+
+- Framework: Jest
+- Total: 44 testes aprovados
+- Resultado: 14 suítes de testes aprovadas.
+
+### 🔹 Testes de Integração — Jest e Supertest
+
+Foram implementados testes para verificar a comunicação entre as rotas, controllers e services do back-end, simulando requisições HTTP.
+
+- Frameworks: Jest e Supertest
+- Total: 9 testes aprovados
+- Validação de rotas de usuários, anúncios, mensagens e curtidas.
+
+### 🔹 Testes End-to-End (E2E) — Cypress
+
+Foram realizados testes automatizados no front-end para validar os fluxos de navegação e autenticação da aplicação.
+
+- Framework: Cypress
+- Total: 20 testes aprovados
+- Validação de funcionalidades diretamente pela interface da aplicação.
+
+### 📊 Resultado dos Testes
+
+| Categoria | Testes aprovados |
+|---|---:|
+| Unitários | 44 |
+| Integração | 9 |
+| E2E | 20 |
+| **Total** | **73** |
+
+### ▶️ Execução dos Testes
+
+**Back-end — Testes unitários:**
+
+```bash
+npm test -- --runInBand
+```
+
+**Back-end — Testes de integração:**
+
+```bash
+npm run test:e2e -- --runInBand
+```
+
+**Front-end — Testes E2E:**
+
+```bash
+npx cypress open
+```
 
 ---
